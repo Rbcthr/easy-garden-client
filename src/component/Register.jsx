@@ -9,10 +9,11 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
-  const { userSignUp } = useContext(AuthContext);
+  const { userSignUp, userSignInWithGoogle } = useContext(AuthContext);
 
   const [show, setShow] = useState(false);
 
+  //   user register
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -43,15 +44,31 @@ const Register = () => {
       return;
     }
 
-    // user register
+    // user register with email and password
     userSignUp(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        user.displayName = name;
+        user.photoURL = photo;
         toast.success("User Successfully Registered");
+        form.reset();
       })
       .catch((error) => {
         console.log(error.message);
+        toast.error(error.message);
+      });
+  };
+
+  //   login with google
+  const handleLoginWithGoogle = () => {
+    userSignInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success("User Successfully Logged in");
+      })
+      .catch((error) => {
         toast.error(error.message);
       });
   };
@@ -67,7 +84,10 @@ const Register = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center">
               Register
             </h1>
-            <button className="btn bg-white text-black border-[#e5e5e5]">
+            <button
+              onClick={handleLoginWithGoogle}
+              className="btn bg-white text-black border-[#e5e5e5]"
+            >
               <FcGoogle size={20} />
               Login with Google
             </button>
