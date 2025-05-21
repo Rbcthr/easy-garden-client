@@ -16,7 +16,7 @@ const FeaturedGardeners = () => {
   return (
     <div className="space-y-5">
       <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
-        Top Trending Tips: ({gardeners.length})
+        Top Trending Tips ({gardeners.length}):
       </h1>
 
         <Swiper

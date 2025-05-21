@@ -5,7 +5,7 @@ const SharedTipCard = ({ tip }) => {
   return (
     <div className="card bg-base-100 shadow-sm hover:shadow-lg hover:shadow-green-300 transition-all duration-500">
       <figure>
-        <img src={image} className=" w-1/2 object-cover py-5" alt="Shoes" />
+        <img src={image} className=" w-1/2 h-60 object-cover py-5" alt="Shoes" />
       </figure>
 
       <div className="card-body">

@@ -159,7 +159,7 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="w-11/12 mx-auto my-16">
-          <FeaturedGardeners></FeaturedGardeners>
+        <FeaturedGardeners></FeaturedGardeners>
       </div>
       <div className="w-11/12 mx-auto my-16">
         <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
