@@ -13,6 +13,8 @@ export const router = createBrowserRouter([
     children: [
         {
             index: true,
+            hydrateFallbackElement: <span className="loading loading-bars loading-xl"></span>,
+            loader: () => fetch('http://localhost:3000/tip-info'),
             Component: Home
         },
         {

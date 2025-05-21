@@ -19,8 +19,11 @@ import bannerSecond from "../assets/banner 2.jpg";
 import bannerThird from "../assets/banner 3.jpg";
 import bannerFourth from "../assets/banner 4.jpg";
 import TopTrendingTips from "./TopTrendingTips";
+import { useLoaderData } from "react-router";
 
 const Home = () => {
+  const sharedTips = useLoaderData();
+  console.log(sharedTips);
   return (
     <div>
       {/* slider */}
@@ -46,8 +49,6 @@ const Home = () => {
             delay: 2000,
             disableOnInteraction: false,
           }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
           className="h-[calc(100vh-65px)]"
         >
           <SwiperSlide className="relative">
@@ -157,7 +158,7 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="w-11/12 mx-auto my-16 h-screen">
-        <TopTrendingTips></TopTrendingTips>
+        <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
       </div>
     </div>
   );
