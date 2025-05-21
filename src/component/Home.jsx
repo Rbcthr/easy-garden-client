@@ -18,6 +18,7 @@ import bannerFirst from "../assets/banner 1.jpg";
 import bannerSecond from "../assets/banner 2.jpg";
 import bannerThird from "../assets/banner 3.jpg";
 import bannerFourth from "../assets/banner 4.jpg";
+import TopTrendingTips from "./TopTrendingTips";
 
 const Home = () => {
   return (
@@ -41,10 +42,10 @@ const Home = () => {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           effect={"fade"}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: false,
-            }}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
           onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={() => console.log("slide change")}
           className="h-[calc(100vh-65px)]"
@@ -141,8 +142,10 @@ const Home = () => {
                 </h1>
                 <p>
                   Large areas of gardening development and mastery have <br />
-                  concentrated on persuading plants to achieve what they would <br />
-                  not have done if left in the wild and therefore “natural” <br />
+                  concentrated on persuading plants to achieve what they would{" "}
+                  <br />
+                  not have done if left in the wild and therefore “natural”{" "}
+                  <br />
                   state.
                 </p>
                 <button className="btn btn-success text-white">
@@ -153,7 +156,9 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="w-11/12 mx-auto my-16 h-screen">home</div>
+      <div className="w-11/12 mx-auto my-16 h-screen">
+        <TopTrendingTips></TopTrendingTips>
+      </div>
     </div>
   );
 };
