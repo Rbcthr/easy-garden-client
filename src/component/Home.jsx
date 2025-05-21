@@ -20,6 +20,7 @@ import bannerThird from "../assets/banner 3.jpg";
 import bannerFourth from "../assets/banner 4.jpg";
 import TopTrendingTips from "./TopTrendingTips";
 import { useLoaderData } from "react-router";
+import FeaturedGardeners from "./FeaturedGardeners";
 
 const Home = () => {
   const sharedTips = useLoaderData();
@@ -157,7 +158,10 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="w-11/12 mx-auto my-16 min-h-screen">
+      <div className="w-11/12 mx-auto my-16">
+          <FeaturedGardeners></FeaturedGardeners>
+      </div>
+      <div className="w-11/12 mx-auto my-16">
         <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
       </div>
     </div>

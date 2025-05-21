@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../assets/garden_logo.png";
 import { Link } from "react-router";
 import {
   FaAddressBook,
