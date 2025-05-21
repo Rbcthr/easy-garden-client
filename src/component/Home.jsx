@@ -157,7 +157,7 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="w-11/12 mx-auto my-16 h-screen">
+      <div className="w-11/12 mx-auto my-16 min-h-screen">
         <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
       </div>
     </div>
