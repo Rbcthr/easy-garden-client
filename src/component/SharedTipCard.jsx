@@ -12,7 +12,7 @@ const SharedTipCard = ({ tip }) => {
         
         <h2 className="card-title">
           {title}
-          <div className="badge badge-success">{difficulty}</div>
+          <div className="badge badge-success text-white">{difficulty}</div>
         </h2>
         <div className="card-actions justify-start">
           <span className="font-bold">Type:</span> <div className="badge badge-outline badge-success">{type}</div>

@@ -27,6 +27,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/explore-gardeners",
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: () => fetch("http://localhost:3000/explore-gardeners"),
         Component: ExploreGardeners,
       },
       {

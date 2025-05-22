@@ -53,6 +53,7 @@ const MyTips = () => {
           <thead>
             <tr>
               <th>No.</th>
+              <th>Name</th>
               <th>Image</th>
               <th>Title</th>
               <th>Type</th>
@@ -65,7 +66,8 @@ const MyTips = () => {
             {/* rows */}
             {myTips.map((tip, index) => (
               <tr key={tip?._id} className="hover:bg-base-300">
-                <th>{index + 1}</th>
+                <td>{index + 1}</td>
+                <td>{tip?.name}</td>
                 <td>
                   <img className="w-12" src={tip?.image} alt="" />
                 </td>

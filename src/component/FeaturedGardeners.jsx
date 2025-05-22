@@ -64,7 +64,7 @@ const FeaturedGardeners = () => {
                   </h2>
                   <p className="px-5 text-xs sm:text-base dark:text-gray-600 ">
                     Status:{" "}
-                    <span className="badge badge-success">
+                    <span className="badge badge-success text-white">
                       {gardener.status}
                     </span>
                   </p>
