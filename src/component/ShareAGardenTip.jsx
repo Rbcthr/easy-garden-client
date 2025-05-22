@@ -166,7 +166,7 @@ const ShareAGardenTip = () => {
         <input
           className="btn btn-success text-white w-full"
           type="submit"
-          value="Add Tips"
+          value="Share a Tip"
         />
       </form>
     </div>

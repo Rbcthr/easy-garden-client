@@ -1,11 +1,97 @@
-import React from 'react';
+import React, { useState } from "react";
+import { FaPen, FaTrash } from "react-icons/fa";
+import { Link, useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const MyTips = () => {
-    return (
-        <div>
-            My tips
-        </div>
-    );
+  const initialMyTips = useLoaderData();
+  const [myTips, setMyTips] = useState(initialMyTips);
+
+    
+
+    // delete a item
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/tip-info-public-and-private/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              console.log("after delete", data);
+              const remainingTips = myTips.filter((t) => t._id !== id);
+              setMyTips(remainingTips);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your item has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
+
+  return (
+    <div className="w-11/12 mx-auto my-16">
+      <h3 className="font-bold">Public & Private Tips ({myTips.length}):</h3>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Difficulty</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* rows */}
+            {myTips.map((tip, index) => (
+              <tr key={tip?._id} className="hover:bg-base-300">
+                <th>{index + 1}</th>
+                <td>
+                  <img className="w-12" src={tip?.image} alt="" />
+                </td>
+                <td>{tip?.title}</td>
+                <td>{tip?.category}</td>
+                <td>{tip?.type}</td>
+                <td>{tip?.difficulty}</td>
+                <td className="flex items-center gap-5">
+                  <Link>
+                    <FaPen size={20}></FaPen>
+                  </Link>
+
+                  <button
+                    onClick={() => handleDelete(tip?._id)}
+                    className="cursor-pointer"
+                  >
+                    <FaTrash size={20}></FaTrash>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default MyTips;

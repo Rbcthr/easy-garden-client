@@ -7,42 +7,71 @@ import ShareAGardenTip from "../component/ShareAGardenTip";
 import MyTips from "../component/MyTips";
 import Register from "../component/Register";
 import Login from "../component/Login";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import ErrorPage from "../component/ErrorPage";
+import TipDetailsPage from "../component/TipDetailsPage";
+import LoadingState from "../component/LoadingState";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
-        {
-            index: true,
-            hydrateFallbackElement: <span className="loading loading-bars loading-xl"></span>,
-            loader: () => fetch('http://localhost:3000/tip-info'),
-            Component: Home
-        },
-        {
-            path: '/explore-gardeners',
-            Component: ExploreGardeners
-        },
-        {
-            path: '/browse-tips',
-            Component: BrowseTips
-        },
-        {
-            path: '/share-a-garden-tip',
-            Component: ShareAGardenTip
-        },
-        {
-            path: '/my-tips',
-            Component: MyTips
-        },
-        {
-            path: '/register',
-            Component: Register
-        },
-        {
-            path: '/login',
-            Component: Login
-        },
-    ]
+      {
+        index: true,
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: () => fetch("http://localhost:3000/tip-info"),
+        Component: Home,
+      },
+      {
+        path: "/explore-gardeners",
+        Component: ExploreGardeners,
+      },
+      {
+        path: "/browse-tips",
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: () => fetch("http://localhost:3000/tip-info-public"),
+        Component: BrowseTips,
+      },
+      {
+        path: "/share-a-garden-tip",
+        element: (
+          <PrivateRoute>
+            <ShareAGardenTip></ShareAGardenTip>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-tips",
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: () =>
+          fetch('http://localhost:3000/tip-info-public-and-private'),
+        element: (
+          <PrivateRoute>
+            <MyTips></MyTips>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/tip-details/:id",
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tip-info-public/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <TipDetailsPage></TipDetailsPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+    ],
   },
 ]);

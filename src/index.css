@@ -20,13 +20,13 @@ body {
     position: absolute;
     bottom: 0;
     height: 3px;
-    background-color: green;
+    background-color: #00BF83;
     width: 0;
     transition: width 0.3s ease-in-out;
 }
 
 .nav-link.active {
-    color: green;
+    color: #00BF83;
     font-weight: bold;
 }
 

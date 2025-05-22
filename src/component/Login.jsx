@@ -6,11 +6,12 @@ import { AuthContext } from "../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Login = () => {
   const { userSignInWithGoogle, userSignIn } = useContext(AuthContext);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   //   login with google
   const handleLoginWithGoogle = () => {
@@ -18,6 +19,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate('/')
         toast.success("User Successfully Logged in");
       })
       .catch((error) => {
@@ -60,6 +62,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("User Successfully Registered");
+        navigate('/')
         form.reset();
       })
       .catch((error) => {
@@ -128,7 +131,7 @@ const Login = () => {
                 />
               </div>
 
-              <button className="btn btn-neutral mt-4">Login</button>
+              <button type="submit" className="btn btn-neutral bg-green-500 border-none mt-4">Login</button>
               <div>
                 <p>
                   Already have an account?{" "}
