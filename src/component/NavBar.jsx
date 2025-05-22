@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import logo from "../assets/garden_logo.png";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const NavBar = () => {
+  const { user, setUser, userSignOut } = useContext(AuthContext);
+  const [dropDownOpen, setDropDownOpen] = useState(false);
+  console.log(user);
+
+  const handleUserLogout = () => {
+    userSignOut()
+    .then(() => {
+      toast.success('User Successfully Logged out');
+      setDropDownOpen(false)
+    })
+    .catch(error => {
+      toast.error(error.message)
+    })
+  }
+
   const links = (
     <>
       <li>
@@ -52,7 +69,11 @@ const NavBar = () => {
       <div className="navbar px-0">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost px-0 lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost px-0 lg:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -83,8 +104,38 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <button className="btn btn-outline btn-success hover:text-white">Login</button>
+        <div className="navbar-end relative">
+          {user ? (
+            <div
+              className="avatar cursor-pointer"
+              onClick={() => setDropDownOpen(!dropDownOpen)}
+            >
+              <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
+                <img src={user.photoURL} />
+              </div>
+            </div>
+          ) : (
+            <Link
+              to={"/login"}
+              className="btn btn-outline btn-success hover:text-white"
+            >
+              Login
+            </Link>
+          )}
+
+          {dropDownOpen && (
+            <ul className="absolute right-0 mt-36 w-48 rounded-md bg-white shadow-lg z-10">
+              <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <Link to="/settings">Settings</Link>
+              </li>
+              <li className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <Link to={'/'} onClick={handleUserLogout}>Logout</Link>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>
