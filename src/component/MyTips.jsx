@@ -74,7 +74,7 @@ const MyTips = () => {
                 <td>{tip?.type}</td>
                 <td>{tip?.difficulty}</td>
                 <td className="flex items-center gap-5">
-                  <Link>
+                  <Link to={`/update-tip/${tip?._id}`}>
                     <FaPen size={20}></FaPen>
                   </Link>
 

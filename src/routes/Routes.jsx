@@ -11,6 +11,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import ErrorPage from "../component/ErrorPage";
 import TipDetailsPage from "../component/TipDetailsPage";
 import LoadingState from "../component/LoadingState";
+import UpdateTipPage from "../component/UpdateTipPage";
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
         path: "/my-tips",
         hydrateFallbackElement: <LoadingState></LoadingState>,
         loader: () =>
-          fetch('http://localhost:3000/tip-info-public-and-private'),
+          fetch("http://localhost:3000/tip-info-public-and-private"),
         element: (
           <PrivateRoute>
             <MyTips></MyTips>
@@ -61,6 +62,17 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <TipDetailsPage></TipDetailsPage>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-tip/:id",
+        hydrateFallbackElement: <LoadingState></LoadingState>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tip-info-public/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateTipPage></UpdateTipPage>
           </PrivateRoute>
         ),
       },
