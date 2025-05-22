@@ -42,7 +42,7 @@ const BrowseTips = () => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="dark:text-white">
             <tr>
               <th>No.</th>
               <th>Image</th>
@@ -54,7 +54,7 @@ const BrowseTips = () => {
           <tbody>
             {/* rows */}
             {tips.map((tip, index) => (
-              <tr key={tip?._id} className="hover:bg-base-300">
+              <tr key={tip?._id} className="hover:bg-base-300 hover:dark:text-black">
                 <th>0{index + 1}</th>
                 <td>
                   <img className="w-12" src={tip?.image} alt="" />

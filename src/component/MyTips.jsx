@@ -50,7 +50,7 @@ const MyTips = () => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead>
+          <thead className="dark:text-white">
             <tr>
               <th>No.</th>
               <th>Name</th>
@@ -65,7 +65,7 @@ const MyTips = () => {
           <tbody>
             {/* rows */}
             {myTips.map((tip, index) => (
-              <tr key={tip?._id} className="hover:bg-base-300">
+              <tr key={tip?._id} className="hover:bg-base-300 hover:dark:text-black">
                 <td>{index + 1}</td>
                 <td>{tip?.name}</td>
                 <td>

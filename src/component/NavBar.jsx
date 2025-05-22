@@ -1,13 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../assets/garden_logo.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 const NavBar = () => {
   const { user, setUser, userSignOut, loading } = useContext(AuthContext);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   // console.log(user);
+  const [isDarkMode, setDarkMode] = React.useState(false);
+
+  const toggleDarkMode = (checked) => {
+    setDarkMode(checked);
+  };
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   const handleUserLogout = () => {
     userSignOut()
@@ -26,7 +40,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/"}
-          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
         >
           Home
         </NavLink>
@@ -34,7 +48,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/explore-gardeners"}
-          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
         >
           Explore Gardeners
         </NavLink>
@@ -42,7 +56,7 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/browse-tips"}
-          className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
         >
           Browse Tips
         </NavLink>
@@ -53,7 +67,7 @@ const NavBar = () => {
             <NavLink
               to={"/share-a-garden-tip"}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `dark:text-black nav-link ${isActive ? "active" : ""}`
               }
             >
               Share A Garden Tip
@@ -63,7 +77,7 @@ const NavBar = () => {
             <NavLink
               to={"/my-tips"}
               className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
+                `dark:text-black nav-link ${isActive ? "active" : ""}`
               }
             >
               My Tips
@@ -101,7 +115,7 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow "
             >
               {links}
             </ul>
@@ -113,7 +127,17 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end relative">
+        <div className="navbar-end relative flex items-center gap-5">
+          <div className="flex items-center justify-center h-full">
+            <DarkModeSwitch
+              checked={isDarkMode}
+              onChange={toggleDarkMode}
+              size={30}
+              sunColor="orange"
+              moonColor="gray"
+            />
+          </div>
+
           {user ? (
             <div
               title={user?.displayName}

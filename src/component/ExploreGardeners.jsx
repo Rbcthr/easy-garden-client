@@ -18,7 +18,7 @@ const ExploreGardeners = () => {
 
   return (
     <div className="w-11/12 mx-auto my-16 space-y-5">
-      <h2 className="text-3xl font-bold">
+      <h2 className="text-3xl font-bold ">
         Explore Gardeners ({gardeners.length}):
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -27,23 +27,26 @@ const ExploreGardeners = () => {
             <figure>
               <img
                 src={gardener?.image}
-                className=" w-full py-5"
+                className=" w-full"
                 alt="Shoes"
               />
             </figure>
 
             <div className="card-body">
               <h2 className="card-title">
+                <span className="dark:text-black">
+
                 Name: {gardener?.name}
-                <div className="badge badge-success text-white">{gardener?.status}</div>
+                </span>
+                <span className="badge badge-success text-white">{gardener?.status}</span>
               </h2>
               <div className="card-actions justify-start">
-                <span className="font-bold">Experience:</span>{" "}
+                <span className="font-bold dark:text-black">Experience:</span>{" "}
                 <div className="badge badge-outline badge-success">{gardener?.experiences}</div>
               </div>
-              <p>Age: {gardener?.age}</p>
-              <p>Gender: {gardener?.gender}</p>
-              <p className="font-semibold">Total Shared Tips: {gardener.totalSharedTips}</p>
+              <p className="dark:text-black">Age: {gardener?.age}</p>
+              <p className="dark:text-black">Gender: {gardener?.gender}</p>
+              <p className="font-semibold dark:text-black">Total Shared Tips: {gardener.totalSharedTips}</p>
             </div>
           </div>
         ))}
