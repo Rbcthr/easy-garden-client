@@ -33,8 +33,16 @@ const FeaturedGardeners = () => {
         }}
         centeredSlides={true}
         breakpoints={{
+          0: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
           640: {
-            slidesPerView: 1,
+            slidesPerView: 3,
             spaceBetween: 20,
           },
           768: {
@@ -69,7 +77,7 @@ const FeaturedGardeners = () => {
                     </span>
                   </p>
                 </div>
-                <div className="flex justify-center pt-2 space-x-4 align-center">
+                <div className="flex flex-wrap justify-center pt-2 space-x-4 align-center">
                   <a
                     rel="noopener noreferrer"
                     href="#"

@@ -46,7 +46,7 @@ const MyTips = () => {
 
   return (
     <div className="w-11/12 mx-auto my-16">
-      <h3 className="font-bold">Public & Private Tips ({myTips.length}):</h3>
+      <h3 className="font-bold text-3xl">Public & Private Tips ({myTips.length}):</h3>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

@@ -19,7 +19,7 @@ const ExploreGardeners = () => {
   return (
     <div className="w-11/12 mx-auto my-16 space-y-5">
       <h2 className="text-3xl font-bold ">
-        Explore Gardeners ({gardeners.length}):
+        Gardeners ({gardeners.length}):
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {gardeners.map((gardener) => (
