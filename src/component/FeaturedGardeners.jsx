@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const gardenersPromise = fetch("http://localhost:3000/featured-gardeners").then(
+const gardenersPromise = fetch("https://assignment-10-server-nu-murex.vercel.app/featured-gardeners").then(
   (res) => res.json()
 );
 

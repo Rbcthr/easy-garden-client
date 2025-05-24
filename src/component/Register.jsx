@@ -7,6 +7,7 @@ import image from "../assets/banner 2.jpg";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 import { AuthContext } from "../context/AuthContext";
+import { Fade } from "react-awesome-reveal";
 
 const Register = () => {
   const { userSignUp, userSignInWithGoogle } = useContext(AuthContext);
@@ -53,7 +54,7 @@ const Register = () => {
         console.log(user);
         user.displayName = name;
         user.photoURL = photo;
-        navigate('/');
+        navigate("/");
         toast.success("User Successfully Registered");
         form.reset();
       })
@@ -69,7 +70,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate("/");
         toast.success("User Successfully Logged in");
       })
       .catch((error) => {
@@ -79,104 +80,114 @@ const Register = () => {
 
   return (
     <div className="hero bg-green-100 min-h-screen w-11/12 mx-auto">
-      <div className="flex flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <img src={image} className="lg:h-[600px] lg:rounded-r-2xl" alt="" />
-        </div>
-        <div className="bg-base-100 w-full lg:max-w-sm shrink-0 lg:rounded-l-2xl">
-          <div className="card-body">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center">
-              Register
-            </h1>
-            <button
-              onClick={handleLoginWithGoogle}
-              className="btn bg-white text-black border-[#e5e5e5]"
-            >
-              <FcGoogle size={20} />
-              Login with Google
-            </button>
-            <p className="text-center">or</p>
+      <Fade delay={200} duration={1000} fraction={0.5} triggerOnce>
+        <div className="flex flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <img src={image} className="lg:h-[600px] lg:rounded-r-2xl" alt="" />
+          </div>
+          <div className="bg-base-100 w-full lg:max-w-sm shrink-0 lg:rounded-l-2xl">
+            <div className="card-body">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center">
+                Register
+              </h1>
+              <button
+                onClick={handleLoginWithGoogle}
+                className="btn bg-white text-black border-[#e5e5e5]"
+              >
+                <FcGoogle size={20} />
+                Login with Google
+              </button>
+              <p className="text-center">or</p>
 
-            <p className="text-black/50 text-center">
-              Enter your information to register
-            </p>
-            <form onSubmit={handleRegister} className="fieldset">
-              <label className="label">Name</label>
+              <p className="text-black/50 text-center">
+                Enter your information to register
+              </p>
+              <form onSubmit={handleRegister} className="fieldset">
+                <label className="label">Name</label>
 
-              <div className="flex items-center relative">
-                <FaRegUser size={15} className="absolute left-1 z-10" />
-                <input
-                  required
-                  name="name"
-                  type="text"
-                  className="input w-full px-5"
-                  placeholder="Name"
-                />
-              </div>
-              <label className="label">Photo URL</label>
-              <div className="flex items-center relative">
-                <FaLink size={15} className="absolute left-1 z-10" />
-
-                <input
-                  required
-                  name="photo"
-                  type="text"
-                  className="input px-5 w-full"
-                  placeholder="Photo URL"
-                />
-              </div>
-              <label className="label">Email</label>
-              <div className="relative flex items-center">
-                <MdOutlineEmail size={20} className="absolute z-10 pl-1" />
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  className="input w-full px-5"
-                  placeholder="Email"
-                />
-              </div>
-              <label className="label">Password</label>
-              <div className="relative flex items-center">
-                <RiLockPasswordLine size={20} className="absolute z-10 pl-1" />
-                {show ? (
-                  <FaRegEyeSlash
-                    onClick={() => setShow(false)}
-                    size={20}
-                    className="absolute z-10 right-0 mr-2 cursor-pointer"
+                <div className="flex items-center relative">
+                  <FaRegUser size={15} className="absolute left-1 z-10" />
+                  <input
+                    required
+                    name="name"
+                    type="text"
+                    className="input w-full px-5"
+                    placeholder="Name"
                   />
-                ) : (
-                  <FaEye
-                    onClick={() => setShow(true)}
-                    size={20}
-                    className="absolute z-10 right-0 mr-2 cursor-pointer"
-                  />
-                )}
-                <input
-                  required
-                  name="password"
-                  type={show ? "text" : "password"}
-                  className="input w-full px-5"
-                  placeholder="Password"
-                />
-              </div>
+                </div>
+                <label className="label">Photo URL</label>
+                <div className="flex items-center relative">
+                  <FaLink size={15} className="absolute left-1 z-10" />
 
-              <button type="submit" className="btn btn-neutral bg-green-500 border-none  mt-4">Register</button>
-              <div>
-                <p>
-                  Already have an account?{" "}
-                  <Link
-                    to={"/login"}
-                    className="link link-hover hover:text-red-500"
-                  >
-                    Login
-                  </Link>
-                </p>
-              </div>
-            </form>
+                  <input
+                    required
+                    name="photo"
+                    type="text"
+                    className="input px-5 w-full"
+                    placeholder="Photo URL"
+                  />
+                </div>
+                <label className="label">Email</label>
+                <div className="relative flex items-center">
+                  <MdOutlineEmail size={20} className="absolute z-10 pl-1" />
+                  <input
+                    required
+                    name="email"
+                    type="email"
+                    className="input w-full px-5"
+                    placeholder="Email"
+                  />
+                </div>
+                <label className="label">Password</label>
+                <div className="relative flex items-center">
+                  <RiLockPasswordLine
+                    size={20}
+                    className="absolute z-10 pl-1"
+                  />
+                  {show ? (
+                    <FaRegEyeSlash
+                      onClick={() => setShow(false)}
+                      size={20}
+                      className="absolute z-10 right-0 mr-2 cursor-pointer"
+                    />
+                  ) : (
+                    <FaEye
+                      onClick={() => setShow(true)}
+                      size={20}
+                      className="absolute z-10 right-0 mr-2 cursor-pointer"
+                    />
+                  )}
+                  <input
+                    required
+                    name="password"
+                    type={show ? "text" : "password"}
+                    className="input w-full px-5"
+                    placeholder="Password"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn btn-neutral bg-green-500 border-none  mt-4"
+                >
+                  Register
+                </button>
+                <div>
+                  <p>
+                    Already have an account?{" "}
+                    <Link
+                      to={"/login"}
+                      className="link link-hover hover:text-red-500"
+                    >
+                      Login
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </Fade>
     </div>
   );
 };

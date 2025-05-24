@@ -55,7 +55,7 @@ const UpdateTipPage = () => {
 
     // add tip info in the DB
 
-    fetch(`http://localhost:3000/tip-info-public-and-private/${_id}`, {
+    fetch(`https://assignment-10-server-nu-murex.vercel.app/tip-info-public-and-private/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

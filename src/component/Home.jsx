@@ -23,6 +23,7 @@ import FeaturedGardeners from "./FeaturedGardeners";
 import Faq from "./Faq";
 import Contact from "./Contact";
 import { Typewriter } from "react-simple-typewriter";
+import { Fade, Slide } from "react-awesome-reveal";
 
 const Home = () => {
   const sharedTips = useLoaderData();
@@ -182,18 +183,26 @@ const Home = () => {
         </Swiper>
       </div>
       <div className="w-11/12 mx-auto my-16">
-        <FeaturedGardeners></FeaturedGardeners>
+        <Fade delay={200} duration={1000} fraction={0.5} triggerOnce>
+          <FeaturedGardeners></FeaturedGardeners>
+        </Fade>
       </div>
       <div className="w-11/12 mx-auto my-16">
-        <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
+        <Fade delay={200} duration={1000} fraction={0.5} triggerOnce>
+          <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
+        </Fade>
       </div>
 
       <div className="w-11/12 mx-auto">
-        <Faq></Faq>
+        <Slide triggerOnce>
+          <Faq></Faq>
+        </Slide>
       </div>
 
       <div className="w-11/12 mx-auto">
-        <Contact></Contact>
+        <Slide direction="right" triggerOnce>
+          <Contact></Contact>
+        </Slide>
       </div>
     </div>
   );

@@ -22,19 +22,19 @@ export const router = createBrowserRouter([
       {
         index: true,
         hydrateFallbackElement: <LoadingState></LoadingState>,
-        loader: () => fetch("http://localhost:3000/tip-info"),
+        loader: () => fetch("https://assignment-10-server-nu-murex.vercel.app/tip-info"),
         Component: Home,
       },
       {
         path: "/explore-gardeners",
         hydrateFallbackElement: <LoadingState></LoadingState>,
-        loader: () => fetch("http://localhost:3000/explore-gardeners"),
+        loader: () => fetch("https://assignment-10-server-nu-murex.vercel.app/explore-gardeners"),
         Component: ExploreGardeners,
       },
       {
         path: "/browse-tips",
         hydrateFallbackElement: <LoadingState></LoadingState>,
-        loader: () => fetch("http://localhost:3000/tip-info-public"),
+        loader: () => fetch("https://assignment-10-server-nu-murex.vercel.app/tip-info-public"),
         Component: BrowseTips,
       },
       {
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         path: "/my-tips",
         hydrateFallbackElement: <LoadingState></LoadingState>,
         loader: () =>
-          fetch("http://localhost:3000/tip-info-public-and-private"),
+          fetch("https://assignment-10-server-nu-murex.vercel.app/tip-info-public-and-private"),
         element: (
           <PrivateRoute>
             <MyTips></MyTips>
@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
         path: "/tip-details/:id",
         hydrateFallbackElement: <LoadingState></LoadingState>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tip-info-public/${params.id}`),
+          fetch(`https://assignment-10-server-nu-murex.vercel.app/tip-info-public/${params.id}`),
         element: (
           <PrivateRoute>
             <TipDetailsPage></TipDetailsPage>
@@ -71,7 +71,7 @@ export const router = createBrowserRouter([
         path: "/update-tip/:id",
         hydrateFallbackElement: <LoadingState></LoadingState>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tip-info-public/${params.id}`),
+          fetch(`https://assignment-10-server-nu-murex.vercel.app/tip-info-public/${params.id}`),
         element: (
           <PrivateRoute>
             <UpdateTipPage></UpdateTipPage>

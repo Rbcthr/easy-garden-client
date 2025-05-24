@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router";
+import { Fade } from "react-awesome-reveal";
 
 const Login = () => {
   const { userSignInWithGoogle, userSignIn } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate('/')
+        navigate("/");
         toast.success("User Successfully Logged in");
       })
       .catch((error) => {
@@ -62,7 +63,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success("User Successfully logged in");
-        navigate('/')
+        navigate("/");
         form.reset();
       })
       .catch((error) => {
@@ -73,80 +74,90 @@ const Login = () => {
 
   return (
     <div className="hero bg-green-100 min-h-screen w-11/12 mx-auto">
-      <div className="flex flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <img src={image} className="lg:h-[600px] lg:rounded-r-2xl" alt="" />
-        </div>
-        <div className="bg-base-100 w-full lg:max-w-sm shrink-0 lg:rounded-l-2xl">
-          <div className="card-body">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center">
-              Login
-            </h1>
-            <button
-              onClick={handleLoginWithGoogle}
-              className="btn bg-white text-black border-[#e5e5e5]"
-            >
-              <FcGoogle size={20} />
-              Login with Google
-            </button>
-            <p className="text-center">or</p>
+      <Fade delay={200} duration={1000} fraction={0.5} triggerOnce>
+        <div className="flex flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <img src={image} className="lg:h-[600px] lg:rounded-r-2xl" alt="" />
+          </div>
+          <div className="bg-base-100 w-full lg:max-w-sm shrink-0 lg:rounded-l-2xl">
+            <div className="card-body">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-center">
+                Login
+              </h1>
+              <button
+                onClick={handleLoginWithGoogle}
+                className="btn bg-white text-black border-[#e5e5e5]"
+              >
+                <FcGoogle size={20} />
+                Login with Google
+              </button>
+              <p className="text-center">or</p>
 
-            <p className="text-black/50 text-center">
-              Enter your information to Login
-            </p>
-            <form onSubmit={handleLogin} className="fieldset">
-              <label className="label">Email</label>
-              <div className="relative flex items-center">
-                <MdOutlineEmail size={20} className="absolute z-10 pl-1" />
-                <input
-                  required
-                  name="email"
-                  type="email"
-                  className="input w-full px-5"
-                  placeholder="Email"
-                />
-              </div>
-              <label className="label">Password</label>
-              <div className="relative flex items-center">
-                <RiLockPasswordLine size={20} className="absolute z-10 pl-1" />
-                {show ? (
-                  <FaRegEyeSlash
-                    onClick={() => setShow(false)}
-                    size={20}
-                    className="absolute z-10 right-0 mr-2 cursor-pointer"
+              <p className="text-black/50 text-center">
+                Enter your information to Login
+              </p>
+              <form onSubmit={handleLogin} className="fieldset">
+                <label className="label">Email</label>
+                <div className="relative flex items-center">
+                  <MdOutlineEmail size={20} className="absolute z-10 pl-1" />
+                  <input
+                    required
+                    name="email"
+                    type="email"
+                    className="input w-full px-5"
+                    placeholder="Email"
                   />
-                ) : (
-                  <FaEye
-                    onClick={() => setShow(true)}
+                </div>
+                <label className="label">Password</label>
+                <div className="relative flex items-center">
+                  <RiLockPasswordLine
                     size={20}
-                    className="absolute z-10 right-0 mr-2 cursor-pointer"
+                    className="absolute z-10 pl-1"
                   />
-                )}
-                <input
-                  required
-                  name="password"
-                  type={show ? "text" : "password"}
-                  className="input w-full px-5"
-                  placeholder="Password"
-                />
-              </div>
+                  {show ? (
+                    <FaRegEyeSlash
+                      onClick={() => setShow(false)}
+                      size={20}
+                      className="absolute z-10 right-0 mr-2 cursor-pointer"
+                    />
+                  ) : (
+                    <FaEye
+                      onClick={() => setShow(true)}
+                      size={20}
+                      className="absolute z-10 right-0 mr-2 cursor-pointer"
+                    />
+                  )}
+                  <input
+                    required
+                    name="password"
+                    type={show ? "text" : "password"}
+                    className="input w-full px-5"
+                    placeholder="Password"
+                  />
+                </div>
 
-              <button type="submit" className="btn btn-neutral bg-green-500 border-none mt-4">Login</button>
-              <div>
-                <p>
-                  Already have an account?{" "}
-                  <Link
-                    to={"/register"}
-                    className="link link-hover hover:text-red-500"
-                  >
-                    Register
-                  </Link>
-                </p>
-              </div>
-            </form>
+                <button
+                  type="submit"
+                  className="btn btn-neutral bg-green-500 border-none mt-4"
+                >
+                  Login
+                </button>
+                <div>
+                  <p>
+                    Already have an account?{" "}
+                    <Link
+                      to={"/register"}
+                      className="link link-hover hover:text-red-500"
+                    >
+                      Register
+                    </Link>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      </Fade>
     </div>
   );
 };
