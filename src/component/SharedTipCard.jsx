@@ -1,7 +1,7 @@
 import React from "react";
 
 const SharedTipCard = ({ tip }) => {
-  const { title, image, type, description, difficulty } = tip;
+  const { title, image, type, description, difficulty, totalLiked } = tip;
   return (
     <div className="card bg-base-100 shadow-sm hover:shadow-lg hover:shadow-green-300 transition-all duration-500">
       <figure>
@@ -17,9 +17,15 @@ const SharedTipCard = ({ tip }) => {
           <span className="dark:text-black">{title}</span>
           <div className="badge badge-success text-white ">{difficulty}</div>
         </h2>
-        <div className="card-actions justify-start">
-          <span className="font-bold dark:text-black">Type:</span>{" "}
-          <div className="badge badge-outline badge-success">{type}</div>
+
+        <div className=" flex justify-between items-center">
+          <span className="font-bold dark:text-black">
+            Type:{" "}
+            <div className="badge badge-outline badge-success">{type}</div>
+          </span>
+          <span className="badge badge-outline badge-success">
+            Total Liked {totalLiked}
+          </span>
         </div>
         <p className="dark:text-black">
           {description.slice(0, 200)}

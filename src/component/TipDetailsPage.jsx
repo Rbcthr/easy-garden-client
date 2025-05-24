@@ -4,8 +4,6 @@ import { MdOutlineEmail } from "react-icons/md";
 import { useLoaderData } from "react-router";
 
 const TipDetailsPage = () => {
-  const [like, setLike] = useState(0);
-
   const tip = useLoaderData();
   const {
     _id,
@@ -18,13 +16,17 @@ const TipDetailsPage = () => {
     name,
     title,
     type,
+    totalLiked:tLiked
   } = tip;
 
+  const [like, setLike] = useState(tLiked);
+
   const handleLike = (id) => {
-    setLike((prvLike) => (prvLike === 0 ? 1 : 0));
+    // setLike((prvLike) => (prvLike === 0 ? 1 : 0));
+    setLike((prvLike) => prvLike + 1);
+    let newLike = tLiked + 1;
 
     const tipInfo = {
-      _id,
       availability,
       category,
       description,
@@ -34,12 +36,12 @@ const TipDetailsPage = () => {
       name,
       title,
       type,
-      totalLiked: like,
+      totalLiked: newLike,
     };
 
-    // update like it database
+    // update like in database
     fetch(`http://localhost:3000/tip-info-public/${id}`, {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -47,7 +49,12 @@ const TipDetailsPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after patching data", data);
+        if (data.modifiedCount) {
+          console.log("after put data", data);
+        }
+        if(!data.modifiedCount){
+          setLike(like)
+        }
       });
   };
 

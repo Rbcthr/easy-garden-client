@@ -1,10 +1,12 @@
 import React from "react";
 import NavBar from "../component/NavBar";
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Footer from "../component/Footer";
+import LoadingState from "../component/LoadingState";
 
 
 const MainLayout = () => {
+  const {state} = useNavigation();
   return (
     <div>
       <header>
@@ -17,7 +19,10 @@ const MainLayout = () => {
 
       <main>
         <div className="min-h-screen">
-          <Outlet></Outlet>
+          {
+            state == "loading" ? <LoadingState></LoadingState> : <Outlet></Outlet>
+          }
+          
         </div>
       </main>
 
