@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import {
   A11y,
-  Autoplay,
   EffectFade,
   Navigation,
   Pagination,
@@ -23,6 +22,7 @@ import { useLoaderData } from "react-router";
 import FeaturedGardeners from "./FeaturedGardeners";
 import Faq from "./Faq";
 import Contact from "./Contact";
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
   const sharedTips = useLoaderData();
@@ -33,14 +33,7 @@ const Home = () => {
       <div>
         <Swiper
           // install Swiper modules
-          modules={[
-            Navigation,
-            Pagination,
-            Scrollbar,
-            A11y,
-            EffectFade,
-            Autoplay,
-          ]}
+          modules={[Navigation, Pagination, Scrollbar, A11y, EffectFade]}
           spaceBetween={50}
           slidesPerView={1}
           navigation
@@ -48,10 +41,6 @@ const Home = () => {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           effect={"fade"}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: false,
-          }}
           className="h-[calc(100vh-65px)]"
         >
           <SwiperSlide className="relative">
@@ -64,12 +53,20 @@ const Home = () => {
             <div className="absolute z-10 inset-0 flex items-center">
               <div className="text-white px-5 md:px-16 space-y-5">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                  Tree is our friend
+                  <Typewriter
+                    words={["Tree is our friend"]}
+                    loop={true}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={30}
+                    deleteSpeed={20}
+                    delaySpeed={1500}
+                  />
                 </h1>
-                <p>
-                  Gardening can be considered both as an art, concerned with{" "}
+                <p className="">
+                  Gardening can be considered both as an art concerned with{" "}
                   <br />
-                  arranging plants harmoniously in their surroundings, and as a{" "}
+                  arranging plants harmoniously in their surroundings and as a{" "}
                   <br />
                   science, encompassing the principles and techniques of plant{" "}
                   <br />
@@ -91,7 +88,15 @@ const Home = () => {
             <div className="absolute z-10 inset-0 flex items-center">
               <div className="text-white px-5 md:px-16 space-y-5">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                  The nature of gardening
+                  <Typewriter
+                    words={["The nature of gardening"]}
+                    loop={true}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={30}
+                    deleteSpeed={20}
+                    delaySpeed={1500}
+                  />
                 </h1>
                 <p>
                   Gardening in its ornamental sense needs a certain level of
@@ -117,7 +122,15 @@ const Home = () => {
             <div className="absolute z-10 inset-0 flex items-center">
               <div className="text-white px-5 md:px-16 space-y-5">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                  The varied appeal of gardening
+                  <Typewriter
+                    words={["The varied appeal of gardening"]}
+                    loop={true}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={30}
+                    deleteSpeed={20}
+                    delaySpeed={1500}
+                  />
                 </h1>
                 <p>
                   The attractions of gardening are many and various and, to a
@@ -142,7 +155,15 @@ const Home = () => {
             <div className="absolute z-10 inset-0 flex items-center">
               <div className="text-white px-5 md:px-16 space-y-5">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-                  Control and cooperation
+                  <Typewriter
+                    words={["Control and cooperation"]}
+                    loop={true}
+                    cursor
+                    cursorStyle="|"
+                    typeSpeed={30}
+                    deleteSpeed={20}
+                    delaySpeed={1500}
+                  />
                 </h1>
                 <p>
                   Large areas of gardening development and mastery have <br />
@@ -172,7 +193,7 @@ const Home = () => {
       </div>
 
       <div className="w-11/12 mx-auto">
-          <Contact></Contact>
+        <Contact></Contact>
       </div>
     </div>
   );
