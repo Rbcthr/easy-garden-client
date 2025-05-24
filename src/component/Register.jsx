@@ -24,7 +24,7 @@ const Register = () => {
     const { name, photo, email, password } = Object.fromEntries(
       newForm.entries()
     );
-    console.log(name, photo, email, password);
+    // console.log(name, photo, email, password);
 
     // validate password
     const upperCase = /[A-Z]/;
@@ -51,7 +51,7 @@ const Register = () => {
     userSignUp(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         user.displayName = name;
         user.photoURL = photo;
         navigate("/");
@@ -59,7 +59,7 @@ const Register = () => {
         form.reset();
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         toast.error(error.message);
       });
   };
@@ -69,7 +69,7 @@ const Register = () => {
     userSignInWithGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate("/");
         toast.success("User Successfully Logged in");
       })

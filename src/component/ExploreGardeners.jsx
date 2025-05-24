@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router";
 
 const ExploreGardeners = () => {
   const gardeners = useLoaderData();
-  console.log(gardeners);
+  // console.log(gardeners);
 
   //   {
   //     "_id": "682db8f749891548a139d4d0",

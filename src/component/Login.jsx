@@ -19,7 +19,7 @@ const Login = () => {
     userSignInWithGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         navigate("/");
         toast.success("User Successfully Logged in");
       })
@@ -34,7 +34,7 @@ const Login = () => {
     const form = e.target;
     const newForm = new FormData(form);
     const { email, password } = Object.fromEntries(newForm.entries());
-    console.log(email, password);
+    // console.log(email, password);
 
     // validate password
     const upperCase = /[A-Z]/;
@@ -61,13 +61,13 @@ const Login = () => {
     userSignIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         toast.success("User Successfully logged in");
         navigate("/");
         form.reset();
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         toast.error(error.message);
       });
   };

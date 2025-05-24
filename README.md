@@ -1,6 +1,6 @@
 Project Name: easy garden
 
-Generated Live Site URL: 
+Generated Live Site URL: https://assignment-10-banana.web.app/
 
 Project Feature: 
 1. In the home page there is a slider that changes and fades every 1 second in infinite loop.

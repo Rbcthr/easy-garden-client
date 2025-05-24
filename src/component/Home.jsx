@@ -27,7 +27,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 
 const Home = () => {
   const sharedTips = useLoaderData();
-  console.log(sharedTips);
+  // console.log(sharedTips);
   return (
     <div>
       {/* slider */}

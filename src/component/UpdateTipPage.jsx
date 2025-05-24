@@ -42,7 +42,7 @@ const UpdateTipPage = () => {
       category,
       availability,
     };
-    console.log(tipInfo);
+    // console.log(tipInfo);
 
     if (!difficulty || !category || !availability) {
       Swal.fire({
@@ -64,7 +64,7 @@ const UpdateTipPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         
         if (data?.matchedCount) {
           Swal.fire({

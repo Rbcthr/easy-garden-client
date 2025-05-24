@@ -32,7 +32,7 @@ const MyTips = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
-              console.log("after delete", data);
+              // console.log("after delete", data);
               const remainingTips = myTips.filter((t) => t._id !== id);
               setMyTips(remainingTips);
               Swal.fire({

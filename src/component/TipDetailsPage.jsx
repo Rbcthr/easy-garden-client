@@ -50,7 +50,7 @@ const TipDetailsPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
-          console.log("after put data", data);
+          // console.log("after put data", data);
         }
         if(!data.modifiedCount){
           setLike(like)

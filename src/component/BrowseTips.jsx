@@ -5,10 +5,10 @@ import { Link, useLoaderData } from "react-router";
 
 const BrowseTips = () => {
   const [fetchTip, setFetchTip] = useState([]);
-  console.log(fetchTip);
+  // console.log(fetchTip);
 
   const [item, setItem] = useState("Easy");
-  console.log(item);
+  // console.log(item);
   // const tips = useLoaderData();
 
   useEffect(() => {

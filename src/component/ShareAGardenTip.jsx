@@ -21,7 +21,7 @@ const ShareAGardenTip = () => {
       category,
       availability,
     };
-    console.log(tipInfo);
+    // console.log(tipInfo);
 
     if (!difficulty || !category || !availability) {
       Swal.fire({

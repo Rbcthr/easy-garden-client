@@ -11,7 +11,7 @@ const gardenersPromise = fetch("https://assignment-10-server-nu-murex.vercel.app
 
 const FeaturedGardeners = () => {
   const gardeners = use(gardenersPromise);
-  console.log(gardeners);
+  // console.log(gardeners);
 
   return (
     <div className="space-y-5">

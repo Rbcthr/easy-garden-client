@@ -8,7 +8,7 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 const NavBar = () => {
   const { user, setUser, userSignOut, loading } = useContext(AuthContext);
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  console.log(user?.photoURL);
+  // console.log(user?.photoURL);
   const [isDarkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = (checked) => {
