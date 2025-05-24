@@ -21,6 +21,8 @@ import bannerFourth from "../assets/banner 4.jpg";
 import TopTrendingTips from "./TopTrendingTips";
 import { useLoaderData } from "react-router";
 import FeaturedGardeners from "./FeaturedGardeners";
+import Faq from "./Faq";
+import Contact from "./Contact";
 
 const Home = () => {
   const sharedTips = useLoaderData();
@@ -163,6 +165,14 @@ const Home = () => {
       </div>
       <div className="w-11/12 mx-auto my-16">
         <TopTrendingTips sharedTips={sharedTips}></TopTrendingTips>
+      </div>
+
+      <div className="w-11/12 mx-auto">
+        <Faq></Faq>
+      </div>
+
+      <div className="w-11/12 mx-auto">
+          <Contact></Contact>
       </div>
     </div>
   );

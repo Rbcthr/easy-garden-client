@@ -4,11 +4,11 @@ import { MdOutlineEmail } from "react-icons/md";
 import { useLoaderData } from "react-router";
 
 const TipDetailsPage = () => {
-
   const [like, setLike] = useState(0);
 
   const tip = useLoaderData();
   const {
+    _id,
     availability,
     category,
     description,
@@ -20,8 +20,35 @@ const TipDetailsPage = () => {
     type,
   } = tip;
 
-  const handleLike = () => {
-    setLike((prvLike) => prvLike === 0 ? 1 : 0 );
+  const handleLike = (id) => {
+    setLike((prvLike) => (prvLike === 0 ? 1 : 0));
+
+    const tipInfo = {
+      _id,
+      availability,
+      category,
+      description,
+      difficulty,
+      email,
+      image,
+      name,
+      title,
+      type,
+      totalLiked: like,
+    };
+
+    // update like it database
+    fetch(`http://localhost:3000/tip-info-public/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tipInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after patching data", data);
+      });
   };
 
   return (
@@ -37,7 +64,10 @@ const TipDetailsPage = () => {
           <p className="flex items-center gap-2">
             <MdOutlineEmail /> {email}
           </p>
-          <button onClick={handleLike} className="btn btn-success text-white">
+          <button
+            onClick={() => handleLike(_id)}
+            className="btn btn-success text-white"
+          >
             <FaHeart size={20}></FaHeart>
             Like <span>{like}</span>
           </button>

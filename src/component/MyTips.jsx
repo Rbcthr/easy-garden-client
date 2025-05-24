@@ -50,7 +50,7 @@ const MyTips = () => {
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
-          <thead className="dark:text-white">
+          <thead className="bg-[#00BF83] dark:text-white">
             <tr>
               <th>No.</th>
               <th>Name</th>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../context/AuthContext";
 
 const ShareAGardenTip = () => {
+  const {user} = useContext(AuthContext);
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
   const [availability, setAvailability] = useState("");
@@ -65,6 +67,7 @@ const ShareAGardenTip = () => {
             <label className="font-bold">Name</label>
             <input
               required
+              value={user?.displayName}
               name="name"
               type="text"
               className="input w-full focus:outline-0"
@@ -75,6 +78,7 @@ const ShareAGardenTip = () => {
             <label className="font-bold">Email</label>
             <input
               required
+              value={user?.email}
               name="email"
               type="email"
               className="input w-full focus:outline-0"

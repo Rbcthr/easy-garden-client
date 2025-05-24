@@ -8,8 +8,8 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 const NavBar = () => {
   const { user, setUser, userSignOut, loading } = useContext(AuthContext);
   const [dropDownOpen, setDropDownOpen] = useState(false);
-  // console.log(user);
-  const [isDarkMode, setDarkMode] = React.useState(false);
+  // console.log(user?.photoURL);
+  const [isDarkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
@@ -28,7 +28,6 @@ const NavBar = () => {
       .then(() => {
         toast.success("User Successfully Logged out");
         setDropDownOpen(false);
-        setUser(null);
       })
       .catch((error) => {
         toast.error(error?.message);
@@ -40,7 +39,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/"}
-          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) =>
+            `dark:text-black nav-link ${isActive ? "active" : ""}`
+          }
         >
           Home
         </NavLink>
@@ -48,7 +49,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/explore-gardeners"}
-          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) =>
+            `dark:text-black nav-link ${isActive ? "active" : ""}`
+          }
         >
           Explore Gardeners
         </NavLink>
@@ -56,7 +59,9 @@ const NavBar = () => {
       <li>
         <NavLink
           to={"/browse-tips"}
-          className={({ isActive }) => `dark:text-black nav-link ${isActive ? "active" : ""}`}
+          className={({ isActive }) =>
+            `dark:text-black nav-link ${isActive ? "active" : ""}`
+          }
         >
           Browse Tips
         </NavLink>
@@ -138,21 +143,31 @@ const NavBar = () => {
             />
           </div>
 
-          {user ? (
+          {loading ? (
+            <span className="loading loading-spinner loading-sm"></span>
+          ) : user ? (
             <div
               title={user?.displayName}
               className="avatar cursor-pointer"
               onClick={() => setDropDownOpen(!dropDownOpen)}
             >
-              <div className="ring-primary ring-offset-base-100 w-8 rounded-full ring-2 ring-offset-2">
-                <img src={user?.photoURL} />
+              <div className="ring-primary ring-offset-base-100 w-8 h-8 rounded-full ring-2 ring-offset-2">
+                <img
+                  className="w-full h-full rounded-full object-cover"
+                  src={
+                    user.photoURL || "https://i.ibb.co/MBtjqXQ/no-avatar.gif"
+                  }
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://i.ibb.co/MBtjqXQ/no-avatar.gif";
+                  }}
+                  alt="User"
+                />
               </div>
             </div>
-          ) : loading ? (
-            <span className="loading loading-spinner loading-xl"></span>
           ) : (
             <Link
-              to={"/login"}
+              to="/login"
               className="btn btn-outline btn-success hover:text-white"
             >
               Login
@@ -160,13 +175,7 @@ const NavBar = () => {
           )}
 
           {dropDownOpen && (
-            <ul className="absolute right-0 mt-36 w-48 rounded-md bg-white shadow-lg z-10">
-              <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                <Link to="/settings">Settings</Link>
-              </li>
+            <ul className="absolute right-0 mt-24 w-48 rounded-md bg-white shadow-lg z-10">
               <li
                 onClick={handleUserLogout}
                 className="cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
