@@ -48,7 +48,7 @@ dependencies:
 14. "swiper": "^11.2.7",
 15. "tailwindcss": "^4.1.7"
 
-project Locally:
+use project Locally:
 1. open the project in vs code
 2. then open terminal then type npm run dev
 3. this will give a localhost link
